@@ -1,0 +1,90 @@
+{% extends "./base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h1>Personal Profile</h1><br>
+<div class="container-fluid p-3">
+    <div class="media">
+        <img class="rounded-circle account-img" src="{{ profile.image.url }}">
+        <div class="media-body">
+            <h2 class="account-heading">{{ user.username }}</h2>
+            <p class="text-secondary">{{ user.email }}</p>
+        </div>
+    </div>
+    <br>
+    <!--ask about the chat room if it's logged on user-->
+    {% if request.user.id == user.id %}
+    <div class="content-section span12 p-3" style="border: 2px solid white">
+        <h2>Chat With Friends</h2><br>
+        <h4>Create and enter chatroom<h4>
+                <input id="room-name-input" type="text" size=50><br>
+                <input id="room-name-submit" type="button" value="Enter">
+                <h4>Or enter an existing personal chat room</h4>
+                {% for chatroom in chatrooms %}
+                <a href="{% url 'room' chatroom.name %}"><button>Chat in {{ chatroom.name }}</button></a>
+                {% endfor %}
+    </div>
+    <br>
+    {% endif %}
+    <!--don't show current friends or status messages if profile is not a friend -->
+    {% if friend %}
+    <div class="content-section span12 p-3" style="border: 2px solid white">
+        <h2>Current Friends</h2><br>
+        {% for friend in profile.friends.all %}
+        <h4>{{ friend }}</h4>
+        {% endfor %}
+        <br>
+        <a href="{% url 'friends' %}"><button>Show Friend Profiles</button></a>
+        <br>
+        <h2>Friend Requests</h2><br>
+        {% for request in profile.requests.all %}
+        <h4>{{ request }}</h4>
+        {% endfor %}
+    </div>
+    <br>
+    <div class="content-section span12 p-3" style="border: 2px solid white">
+        <h2>Status Messages</h2>
+        <!--don't allow adding to status messages if it's not me-->
+        {% if request.user.id == user.id %}
+        <form method="post">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Message Info</legend>
+                {{ s_form|crispy }}
+            </fieldset>
+            <input type="submit" name="submit" value="Submit" />
+        </form>
+        {% endif %}
+        <br>
+        {% for status in statuses %}
+        <p>{{ status.message }} {{ status.datetime }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <br>
+    <!--don't show any other detail if profile is not a friend -->
+    {% if friend %}
+    <div class="content-section span12 p-3" style="border: 2px solid white">
+        <h2>Picture Gallery</h2><br>
+        {% for picture in pictures %}
+        <div class="media p-3">
+            <img class="account-img" src="{{ picture.image.url }}">
+        </div>
+        {% endfor %}
+    </div>
+    <br>
+    {% endif %}
+</div>
+<script>
+    document.querySelector('#room-name-input').focus();
+    document.querySelector('#room-name-input').onkeyup = function (e) {
+        if (e.keyCode === 13) {  // enter, return
+            document.querySelector('#room-name-submit').click();
+        }
+    };
+    document.querySelector('#room-name-submit').onclick = function (e) {
+        var roomName = document.querySelector('#room-name-input').value;
+        window.location.pathname = '/room/' + roomName + '/';
+    };
+</script>
+{% endblock %}

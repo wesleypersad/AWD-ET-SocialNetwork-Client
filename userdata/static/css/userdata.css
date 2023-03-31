@@ -1,0 +1,59 @@
+body {
+    font-family: Sans-Serif;
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
+    }
+
+#application_title
+{
+    display: inline;
+}
+
+#navigation{
+    width: 100%;
+    background-color: #6699cc;
+    color: #ffffff;
+    padding: 10px;
+}
+
+#footer{
+    padding-left: 10px;
+    width: 100%;
+    float: left;
+}
+
+#application_title
+{
+    display: inline;
+    vertical-align: middle;
+}
+
+#logo{
+    vertical-align: middle;
+    height: 50px;
+    width: 50px
+}
+
+#header{
+    vertical-align: middle;
+    width: 90%;
+    background-color: #3caea3;
+}
+
+a {
+    text-decoration: none;
+}
+
+.nav_link {
+    color: white;
+}
+
+#content {
+    padding-left: 10px;
+    float: left;
+}
+
+.navbar {
+    padding: 5px;
+    }

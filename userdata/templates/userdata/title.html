@@ -1,0 +1,44 @@
+<div class="container p-3">
+    <div class="w-100 d-flex bg-info text-white">
+        <h1 id="application_title" class="ml-3">Social Network Browser : {{ request.user.username }}</h1>
+    </div>
+    <div class="w-100 d-flex bg-warning text-white p-3" style="border: 2px solid white">
+        <ul class="nav">
+            <li class="nav-item text-white">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+        </ul>
+        <ul class="nav justify-content-end">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'profiles' %}">All Profiles</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'profile' %}">Personal Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'editprofile' %}">Edit Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'addpicture' %}">Add to Gallery</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+            <form class="d-flex col p-3" method=POST action="{% url 'search_profiles' %}">
+                {% csrf_token %}
+                <input class="form-control me-2" type="search" placeholder="Username or Email" aria-label="Search"
+                    name="searched">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </form>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'register' %}">Register</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</div>

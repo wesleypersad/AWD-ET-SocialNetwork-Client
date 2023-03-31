@@ -1,0 +1,47 @@
+{% extends "./base.html" %}
+
+{% block content %}
+<h1>Personal Profiles</h1><br>
+<div class="container-fluid">
+    {% for profile,isFriend,beFriend in profilesplus %}
+    <div class="media p-3" style="border: 2px solid white">
+        <img class="rounded-circle account-img" src="{{ profile.image.url }}">
+        <div class="media-body">
+            <h2 class="account-heading">{{ profile.user.username }}</h2>
+            <p class="text-secondary">{{ profile.user.email }}</p>
+            <a href="{% url 'profile' profile.id %}"><button>Show Profile</button></a>
+            <br>
+            {% if isFriend %}
+            <h4>Friend :</h4>
+            <a href="{% url 'unfriend' profile.id %}"><button>Unfriend</button></a>
+            {% else %}
+            <h4>Not Friend :</h4>
+            <a href="{% url 'friendreq' profile.id %}"><button>Send Friend Request</button></a>
+            {% if beFriend %}
+            <h4>Requested :</h4>
+            <a href="{% url 'friend' profile.id %}"><button>Make Friend</button></a>
+            <a href="{% url 'friendrej' profile.id %}"><button>Reject Request</button></a>
+            {% endif %}
+            </h4>
+            {% endif %}
+        </div>
+        <br>
+        <!--ask about the chat room if it's logged on user-->
+        {% if isFriend %}
+        <div class="content-section span12 p-3" style="border: 2px solid white">
+            <h3>Available chat room(s)</h3>
+            <br>
+            {% for chatroom in chatrooms %}
+            <!--make sure chatroom belongs to profile-->
+            {% if chatroom.profile == profile %}
+            <a href="{% url 'room' chatroom.name %}"><button>Chat in {{ chatroom.name }}</button></a>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <br>
+        {% endif %}
+    </div>
+    <br>
+    {% endfor %}
+</div>
+{% endblock %}
