@@ -145,8 +145,11 @@ LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = 'login'
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://socialnetwork'
+    'https://socialnetwork',
+    'https://web-production-3ae1c.up.railway.app'
 ]
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
