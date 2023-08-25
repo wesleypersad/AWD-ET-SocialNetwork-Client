@@ -28,6 +28,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
+REDIS_PORT = env('REDIS_PORT')
+
+#print("redis port is :",REDIS_PORT)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # Images on profiles may disappear whne this is False ?
@@ -160,7 +163,7 @@ CHANNEL_LAYERS = {
     'default' : {
         'BACKEND' : 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [('*', 6379)]
+            'hosts': [('*', REDIS_PORT)]
         },
     },
 }
