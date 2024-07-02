@@ -1,2 +1,17 @@
 help.txt
 .env
+
+# Bytecode files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+socialnetwork/Lib/
+
+# Environment settings
+.env
+
+# SQLite database
+db.sqlite3
