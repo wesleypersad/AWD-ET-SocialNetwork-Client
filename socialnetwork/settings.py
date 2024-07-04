@@ -36,7 +36,8 @@ print("redis host is :",REDIS_HOST)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # Images on profiles may disappear whne this is False ?
-DEBUG = True
+#DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 ALLOWED_HOSTS = [
     "*"          
