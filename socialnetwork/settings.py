@@ -40,8 +40,12 @@ print("redis host is :",REDIS_HOST)
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 ALLOWED_HOSTS = [
-    "*"          
+    'localhost',
+    '127.0.0.1',
+    'web-production-3ae1c.up.railway.app'     
 ]
+
+CSRF_TRUSTED_ORIGINS = [ 'https://web-production-3ae1c.up.railway.app' ]
 
 # Application definition
 
