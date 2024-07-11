@@ -31,6 +31,9 @@ def user_list(request):
 
 @api_view(['GET'])
 def profile_detail(request, username):
+    if not request.user.is_authenticated:
+        return Response({"error": "User is not authenticated"}, status=status.HTTP_401_UNAUTHORIZED)
+
     try:
         profile = Profile.objects.get(user__username=username)
     except User.DoesNotExist:
