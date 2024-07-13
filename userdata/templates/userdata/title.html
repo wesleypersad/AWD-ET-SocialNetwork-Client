@@ -21,10 +21,13 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'addpicture' %}">Add to Gallery</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-            </li>
+            </li>            
+            <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="nav-link" style="background: none; border: none; padding: none; margin: 2; cursor: pointer; color: blue; display: inline;">
+                    Logout
+                </button>
+            </form>        
             <form class="d-flex col p-3" method=POST action="{% url 'search_profiles' %}">
                 {% csrf_token %}
                 <input class="form-control me-2" type="search" placeholder="Username or Email" aria-label="Search"

@@ -500,9 +500,6 @@ def search_profiles(request):
 
 @login_required
 def status(request):
-    if not request.user.is_authenticated:
-        return HttpResponseRedirect('/')
-
     date = datetime.date.today()
 
     if request.method == "GET":
