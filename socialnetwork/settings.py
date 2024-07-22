@@ -41,7 +41,8 @@ DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'web-production-3ae1c.up.railway.app'     
+    'web-production-3ae1c.up.railway.app',
+    'awd-et-socialnetwork-client-production.up.railway.app'     
 ]
 
 # Application definition
@@ -60,6 +61,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'socialnetwork',
 ]
 
 MIDDLEWARE = [
@@ -171,7 +173,8 @@ CHANNEL_LAYERS = {
     'default' : {
         'BACKEND' : 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [(REDIS_HOST, REDIS_PORT)]
+            'hosts': [(REDIS_HOST, REDIS_PORT)]            
+#            'hosts': [('redis://default:Bc+5cAC-Cg545eBd--24gdc4b-21cAfC@viaduct.proxy.rlwy.net:10062')]
         },
     },
 }
