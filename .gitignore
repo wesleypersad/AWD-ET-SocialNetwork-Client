@@ -13,4 +13,4 @@ socialnetwork/Lib/
 .env
 
 # SQLite database
-db.sqlite3
+#db.sqlite3

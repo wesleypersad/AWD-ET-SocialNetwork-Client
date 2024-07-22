@@ -107,6 +107,9 @@ DATABASES = {
     }
 }
 
+from django.contrib.auth.models import User
+print(User.objects.all())
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
