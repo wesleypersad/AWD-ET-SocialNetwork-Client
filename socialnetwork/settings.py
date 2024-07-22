@@ -160,7 +160,8 @@ LOGIN_URL = 'login'
 
 CSRF_TRUSTED_ORIGINS = [
     'https://socialnetwork',
-    'https://web-production-3ae1c.up.railway.app'
+    'https://web-production-3ae1c.up.railway.app',
+    'https://awd-et-socialnetwork-client-production.up.railway.app'
 ]
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
