@@ -42,7 +42,7 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     'web-production-3ae1c.up.railway.app',
-    'awd-et-socialnetwork-client-production.up.railway.app'     
+    'awd-et-socialnetwork-client-production.up.railway.app',    
 ]
 
 # Application definition
@@ -107,8 +107,8 @@ DATABASES = {
     }
 }
 
-from django.contrib.auth.models import User
-print(User.objects.all())
+#from django.contrib.auth.models import User
+#print(User.objects.all())
 
 
 # Password validation
@@ -164,7 +164,7 @@ LOGIN_URL = 'login'
 CSRF_TRUSTED_ORIGINS = [
     'https://socialnetwork',
     'https://web-production-3ae1c.up.railway.app',
-    'https://awd-et-socialnetwork-client-production.up.railway.app'
+    'https://awd-et-socialnetwork-client-production.up.railway.app',
 ]
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
