@@ -29,6 +29,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = env('SECRET_KEY')
 REDIS_PORT = env('REDIS_PORT')
 REDIS_HOST = env('REDIS_HOST')
+REDIS_PASSWORD = env('REDIS_PASSWORD')
 
 #print("redis port is :",REDIS_PORT)
 print("redis host is :",REDIS_HOST)
@@ -177,8 +178,15 @@ CHANNEL_LAYERS = {
     'default' : {
         'BACKEND' : 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [(REDIS_HOST, REDIS_PORT)]            
+            'hosts': [f"redis://:{REDIS_PASSWORD}@{REDIS_HOST}:{REDIS_PORT}"],            
 #            'hosts': [('redis://default:Bc+5cAC-Cg545eBd--24gdc4b-21cAfC@viaduct.proxy.rlwy.net:10062')]
+            'symmetric_encryption_keys': [os.getenv('SECRET_KEY')],
+            'capacity': 1000,
+            'expiry': 10,
+            'group_expiry': 60,
+            'channel_capacity': {
+                'http.request': 100,
+            },
         },
     },
 }
